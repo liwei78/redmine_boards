@@ -1,0 +1,6 @@
+<h2><%= l(:label_edit) %></h2>
+
+<% labelled_tabular_form_for :board_list, @board_list, :url => {:controller => "board_lists", :action => 'update', :id => @board_list}, :html => {:method => :put} do |f| %>
+  <%= render :partial => 'form', :locals => {:f => f} %>
+  <%= submit_tag l(:button_update) %>
+<% end %>

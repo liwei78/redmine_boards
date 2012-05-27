@@ -1,7 +1,7 @@
 class AddColumns < ActiveRecord::Migration
   def self.up
-    add_column :boards,   :board_list,     :integer
-    add_column :messages, :board_category, :integer
+    add_column :boards,   :board_list_id,     :integer
+    add_column :messages, :board_category_id, :integer
   end
 
   def self.down

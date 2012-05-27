@@ -15,6 +15,6 @@ uninstall:
   rake db:migrate:plugin NAME=redmine_boards VERSION=0
   
 push:
-  git push redmine_boards master
+  git push origin master
   
 changed:
