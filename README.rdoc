@@ -23,6 +23,7 @@ rake:
 modify:
   views/boards/_form.html.erb
   views/boards/index.html.erb
+  views/boards/show.html.erb
   views/messages/_form.html.erb
   config/environments/production.rb
   
