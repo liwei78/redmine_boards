@@ -16,5 +16,13 @@ uninstall:
   
 push:
   git push origin master
+
+rake:
+  rake redmine:boards:migrate
+
+modify:
+  views/boards/_form.html.erb
+  views/boards/index.html.erb
+  views/messages/_form.html.erb
+  config/environments/production.rb
   
-changed:
