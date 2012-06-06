@@ -5,7 +5,7 @@ require 'redmine'
 Redmine::Plugin.register :redmine_boards do
   name 'Redmine Board plugin'
   author 'Riquel Li'
-  description 'Sort Board with BoardList'
+  description 'Show the boards like a BBS forum, and each topic have a category.'
   version '0.0.1'
   url 'http://railser.cn'
   author_url 'http://railser.cn/me'
