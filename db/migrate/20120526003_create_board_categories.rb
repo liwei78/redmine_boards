@@ -1,6 +1,6 @@
 class CreateBoardCategories < ActiveRecord::Migration
   def self.up
-    create_table :board_categories do |t|
+    create_table :board_categories, :options => 'DEFAULT CHARSET=utf8' do |t|
       t.column  :board_list_id, :integer
       t.column  :name,          :string
       t.column  :position,      :integer, :default => 0
