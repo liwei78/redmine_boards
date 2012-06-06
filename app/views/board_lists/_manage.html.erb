@@ -11,7 +11,7 @@
           <%= reorder_links('board_list', {:controller => 'board_lists', :id => list, :action => :update}, :put) %>
         </td>
         <td width="30%" class="buttons">
-          <%= link_to "categories", {:controller => "board_categories", :action => "index", :bl => list}%>
+          <%= link_to l(:button_categories), {:controller => "board_categories", :action => "index", :bl => list}%>
           <%= link_to l(:button_edit), {:controller => 'board_lists', :action => 'edit', :id => list}, :class => 'icon icon-edit' %>
           <%= link_to l(:button_delete), {:controller => 'board_lists', :action => 'show', :id => list}, :confirm => l(:text_are_you_sure), :method => :delete, :class => 'icon icon-del' %>
         </td>
