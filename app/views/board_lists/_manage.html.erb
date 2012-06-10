@@ -13,7 +13,7 @@
         <td width="30%" class="buttons">
           <%= link_to l(:button_categories), {:controller => "board_categories", :action => "index", :bl => list}%>
           <%= link_to l(:button_edit), {:controller => 'board_lists', :action => 'edit', :id => list}, :class => 'icon icon-edit' %>
-          <%= link_to l(:button_delete), {:controller => 'board_lists', :action => 'destroy', :id => list}, :confirm => l(:text_are_you_sure), :method => :post, :class => 'icon icon-del' %>
+          <%= link_to l(:button_delete), {:controller => 'board_lists', :action => 'delete', :id => list}, :confirm => l(:text_are_you_sure), :method => :post, :class => 'icon icon-del' %>
         </td>
       </tr>
     <% end %>

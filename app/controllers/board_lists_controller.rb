@@ -37,9 +37,11 @@ class BoardListsController < ApplicationController
     end
   end
 
-  def destroy
-    board_list = BoardList.find(params[:id])
-    board_list.destroy
-    redirect_to :controller => "settings", :action => "plugin", :id => "redmine_boards"
+  def delete
+    if request.post?
+      board_list = BoardList.find(params[:id])
+      board_list.destroy
+      redirect_to :controller => "settings", :action => "plugin", :id => "redmine_boards"
+    end
   end
 end

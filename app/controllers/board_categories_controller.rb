@@ -34,10 +34,12 @@ class BoardCategoriesController < ApplicationController
     end
   end
 
-  def destroy
-    board_category = BoardCategory.find(params[:id])
-    board_list_id = board_category.board_list_id
-    board_category.destroy
-    redirect_to :controller => "board_categories", :action => "index", :bl => board_list_id
+  def delete
+    if request.post?
+      board_category = BoardCategory.find(params[:id])
+      board_list_id = board_category.board_list_id
+      board_category.destroy
+      redirect_to :controller => "board_categories", :action => "index", :bl => board_list_id
+    end
   end
 end
