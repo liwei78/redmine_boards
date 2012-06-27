@@ -1,12 +1,13 @@
 # liwei created at 2012-5-26
 # 0.0.1 basic
+# 0.0.2 fix board topic show
 require 'redmine'
 
 Redmine::Plugin.register :redmine_boards do
   name 'Redmine Board plugin'
   author 'Riquel Li'
   description 'Show the boards like a BBS forum, and each topic have a category.'
-  version '0.0.1'
+  version '0.0.2'
   url 'http://railser.cn'
   author_url 'http://railser.cn/me'
 

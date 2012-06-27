@@ -1,3 +1,7 @@
 en:
   field_board_list: "Board List"
   button_categories: "Categories"
+  label_author_post: "Posts"
+  label_author_location: "Location"
+  field_location: "Location"
+  field_signature: "Signature"

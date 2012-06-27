@@ -1,0 +1,118 @@
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag 'redmine_boards', :plugin => 'redmine_boards' %>
+<% end %>
+
+<%= breadcrumb link_to(l(:label_board_plural), {:controller => 'boards', :action => 'index', :project_id => @project}),
+               link_to(h(@board.name), {:controller => 'boards', :action => 'show', :project_id => @project, :id => @board}),
+               h(@topic.subject) %>
+
+<div class="contextual">
+    <%= watcher_tag(@topic, User.current) %>
+    <%= link_to_remote_if_authorized(l(:button_quote), { :url => {:action => 'quote', :id => @topic} }, :class => 'icon icon-comment') unless @topic.locked? %>
+    <%= link_to(l(:button_edit), {:action => 'edit', :id => @topic}, :class => 'icon icon-edit') if @message.editable_by?(User.current) %>
+    <%= link_to(l(:button_delete), {:action => 'destroy', :id => @topic}, :method => :post, :confirm => l(:text_are_you_sure), :class => 'icon icon-del') if @message.destroyable_by?(User.current) %>
+</div>
+
+
+<div class="message">
+  <table cellspacing="0" cellpadding="5" width="100%" class="board_table">
+    <tr>
+      <th></th>
+      <th align="left"><%=h @topic.subject %></th>
+    </tr>
+    <tr>
+      <td class="board_table_avatar" valign="top">
+        <%= link_to avatar(@topic.author, :size => "80"), link_to_user(@topic.author) %>
+        <p class="board_author"><%= link_to @topic.author, link_to_user(@topic.author) %></p>
+        <table border="0" cellspacing="5" cellpadding="5" width="100%">
+          <tr>
+            <td width="60px" align="right"><%= l(:label_author_post) %></td>
+            <td align="left"><%= @topic.author.messages_count %></td>
+          </tr>
+          <tr>
+            <td width="60px" align="right"><%= l(:label_author_location) %></td>
+            <td align="left"><%=h @topic.author.location %></td>
+          </tr>
+        </table>
+      </td>
+      <td class="board_table_content" valign="top">
+        <div class="wiki">
+        <%= textilizable(@topic.content, :attachments => @topic.attachments) %>
+        </div>
+        <%= link_to_attachments @topic, :author => false %>
+        <% if @topic.author.signature.present? %>
+        <div class="signature">
+          <%= textilizable(@topic.author.signature) %>
+        </div>
+        <% end %>
+      </td>
+    </tr>
+    <% unless @replies.empty? %>
+      <% @replies.each do |message| %>
+        <tr>
+          <th></th>
+          <th align="left"><%= link_to h(message.subject), { :controller => 'messages', :action => 'show', :board_id => @board, :id => @topic, :r => message, :anchor => "message-#{message.id}" } %></th>
+        </tr>
+        <tr id="<%= "message-#{message.id}" %>">
+          <td class="board_table_avatar" valign="top">
+            <%= link_to avatar(message.author, :size => "80"), link_to_user(message.author) %>
+            <p class="board_author"><%= link_to message.author, link_to_user(message.author) %></p>
+            <table border="0" cellspacing="5" cellpadding="5" width="100%">
+              <tr>
+                <td width="60px" align="right"><%= l(:label_author_post) %></td>
+                <td align="left"><%= message.author.messages_count %></td>
+              </tr>
+              <tr>
+                <td width="60px" align="right"><%= l(:label_author_location) %></td>
+                <td align="left"><%= message.author.location %></td>
+              </tr>
+            </table>
+          </td>
+          <td class="board_table_content" valign="top">
+            <div class="contextual">
+              <%= link_to_remote_if_authorized(image_tag('comment.png'), { :url => {:action => 'quote', :id => message} }, :title => l(:button_quote)) unless @topic.locked? %>
+              <%= link_to(image_tag('edit.png'), {:action => 'edit', :id => message}, :title => l(:button_edit)) if message.editable_by?(User.current) %>
+              <%= link_to(image_tag('delete.png'), {:action => 'destroy', :id => message}, :method => :post, :confirm => l(:text_are_you_sure), :title => l(:button_delete)) if message.destroyable_by?(User.current) %>
+            </div>
+            <div class="wiki"><%= textilizable message, :content, :attachments => message.attachments %></div>
+            <%= link_to_attachments message, :author => false %>
+            <% if message.author.signature.present? %>
+            <div class="signature">
+              <%= textilizable(message.author.signature) %>
+            </div>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+  </table>
+</div>
+<br />
+
+<% unless @replies.empty? %>
+<p class="pagination"><%= pagination_links_full @reply_pages, @reply_count, :per_page_links => false %></p>
+<% end %>
+
+<% if !@topic.locked? && authorize_for('messages', 'reply') %>
+<p><%= toggle_link l(:button_reply), "reply", :focus => 'message_content' %></p>
+<div id="reply" style="display:none;">
+<% form_for :reply, @reply, :url => {:action => 'reply', :id => @topic}, :html => {:multipart => true, :id => 'message-form'} do |f| %>
+  <%= render :partial => 'form', :locals => {:f => f, :replying => true} %>
+  <%= submit_tag l(:button_submit) %>
+  <%= link_to_remote l(:label_preview),
+                     { :url => { :controller => 'messages', :action => 'preview', :board_id => @board },
+                       :method => 'post',
+                       :update => 'preview',
+                       :with => "Form.serialize('message-form')",
+                       :complete => "Element.scrollTo('preview')"
+                     }, :accesskey => accesskey(:preview) %>
+<% end %>
+<div id="preview" class="wiki"></div>
+</div>
+<% end %>
+
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag 'scm' %>
+<% end %>
+
+<% html_title @topic.subject %>

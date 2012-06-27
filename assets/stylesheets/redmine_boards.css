@@ -1,0 +1,25 @@
+.board_table {
+  border: 1px solid #E4E4E4;
+  border-collapse: collapse;
+  width: 100%;
+}
+.board_table th {
+  background-color: #EEE;
+  padding: 4px;
+  white-space: nowrap;
+}
+.board_table .board_table_avatar {
+  width: 160px;
+  text-align: center;
+  border-right: 1px solid #E4E4E4;
+}
+.board_table .board_table_content .wiki {
+  line-height: 200%;
+}
+.board_table .board_author {
+  line-height: 30px;
+}
+.board_table_content .signature {
+  border-top: 1px solid #E4E4E4;
+  padding: 10px;
+}
