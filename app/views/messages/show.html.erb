@@ -22,8 +22,8 @@
     </tr>
     <tr>
       <td class="board_table_avatar" valign="top">
-        <%= link_to avatar(@topic.author, :size => "80"), link_to_user(@topic.author) %>
-        <p class="board_author"><%= link_to @topic.author, link_to_user(@topic.author) %></p>
+        <%= link_to avatar(@topic.author, :size => "80"), @topic.author %>
+        <p class="board_author"><%= link_to @topic.author, @topic.author %></p>
         <table border="0" cellspacing="5" cellpadding="5" width="100%">
           <tr>
             <td width="60px" align="right"><%= l(:label_author_post) %></td>
@@ -55,8 +55,8 @@
         </tr>
         <tr id="<%= "message-#{message.id}" %>">
           <td class="board_table_avatar" valign="top">
-            <%= link_to avatar(message.author, :size => "80"), link_to_user(message.author) %>
-            <p class="board_author"><%= link_to message.author, link_to_user(message.author) %></p>
+            <%= link_to avatar(message.author, :size => "80"), message.author %>
+            <p class="board_author"><%= link_to message.author, message.author %></p>
             <table border="0" cellspacing="5" cellpadding="5" width="100%">
               <tr>
                 <td width="60px" align="right"><%= l(:label_author_post) %></td>
