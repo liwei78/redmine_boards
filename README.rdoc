@@ -36,3 +36,5 @@ update to 0.0.2
   # fix app/models/user.rb
   # attr_protected :login, :admin, :password, :password_confirmation, :hashed_password, :location, :signature
   
+fix user's messages_count
+  rake RAILS_ENV=production redmine:boards:fix_messages_count
