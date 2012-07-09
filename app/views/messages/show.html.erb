@@ -17,22 +17,23 @@
 <div class="message">
   <table cellspacing="0" cellpadding="5" width="100%" class="board_table">
     <tr>
-      <th></th>
+      <th><%= link_to @topic.author, @topic.author %></th>
       <th align="left"><%=h @topic.subject %></th>
     </tr>
     <tr>
       <td class="board_table_avatar" valign="top">
         <%= link_to avatar(@topic.author, :size => "80"), @topic.author %>
-        <p class="board_author"><%= link_to @topic.author, @topic.author %></p>
         <table border="0" cellspacing="5" cellpadding="5" width="100%">
           <tr>
             <td width="60px" align="right"><%= l(:label_author_post) %></td>
             <td align="left"><%= @topic.author.messages_count %></td>
           </tr>
-          <tr>
-            <td width="60px" align="right"><%= l(:label_author_location) %></td>
-            <td align="left"><%=h @topic.author.location %></td>
-          </tr>
+          <% if @topic.author.location.present? %>
+            <tr>
+              <td width="60px" align="right" valign="top"><%= l(:label_author_location) %></td>
+              <td align="left"><%=h @topic.author.location %></td>
+            </tr>
+          <% end %>
         </table>
       </td>
       <td class="board_table_content" valign="top">
@@ -53,22 +54,23 @@
     <% unless @replies.empty? %>
       <% @replies.each do |message| %>
         <tr>
-          <th></th>
+          <th><%= link_to message.author, message.author %></th>
           <th align="left"><%= link_to h(message.subject), { :controller => 'messages', :action => 'show', :board_id => @board, :id => @topic, :r => message, :anchor => "message-#{message.id}" } %></th>
         </tr>
         <tr id="<%= "message-#{message.id}" %>">
           <td class="board_table_avatar" valign="top">
             <%= link_to avatar(message.author, :size => "80"), message.author %>
-            <p class="board_author"><%= link_to message.author, message.author %></p>
             <table border="0" cellspacing="5" cellpadding="5" width="100%">
               <tr>
                 <td width="60px" align="right"><%= l(:label_author_post) %></td>
                 <td align="left"><%= message.author.messages_count %></td>
               </tr>
-              <tr>
-                <td width="60px" align="right"><%= l(:label_author_location) %></td>
-                <td align="left"><%= message.author.location %></td>
-              </tr>
+              <% if message.author.location.present? %>
+                <tr>
+                  <td width="60px" align="right" valign="top"><%= l(:label_author_location) %></td>
+                  <td align="left"><%= message.author.location %></td>
+                </tr>
+              <% end %>
             </table>
           </td>
           <td class="board_table_content" valign="top">

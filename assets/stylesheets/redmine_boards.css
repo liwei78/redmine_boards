@@ -12,9 +12,11 @@
   width: 160px;
   text-align: center;
   border-right: 1px solid #E4E4E4;
+  padding-top: 10px;
 }
 .board_table .board_table_content .wiki {
   line-height: 200%;
+  min-height: 100px;
 }
 .board_table .board_author {
   line-height: 30px;
