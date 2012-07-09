@@ -25,12 +25,12 @@
         <%= link_to avatar(@topic.author, :size => "80"), @topic.author %>
         <table border="0" cellspacing="5" cellpadding="5" width="100%">
           <tr>
-            <td width="60px" align="right"><%= l(:label_author_post) %></td>
+            <td width="70px" align="right"><%= l(:label_author_post) %></td>
             <td align="left"><%= @topic.author.messages_count %></td>
           </tr>
           <% if @topic.author.location.present? %>
             <tr>
-              <td width="60px" align="right" valign="top"><%= l(:label_author_location) %></td>
+              <td width="70px" align="right" valign="top"><%= l(:label_author_location) %></td>
               <td align="left"><%=h @topic.author.location %></td>
             </tr>
           <% end %>
@@ -62,12 +62,12 @@
             <%= link_to avatar(message.author, :size => "80"), message.author %>
             <table border="0" cellspacing="5" cellpadding="5" width="100%">
               <tr>
-                <td width="60px" align="right"><%= l(:label_author_post) %></td>
+                <td width="70px" align="right"><%= l(:label_author_post) %></td>
                 <td align="left"><%= message.author.messages_count %></td>
               </tr>
               <% if message.author.location.present? %>
                 <tr>
-                  <td width="60px" align="right" valign="top"><%= l(:label_author_location) %></td>
+                  <td width="70px" align="right" valign="top"><%= l(:label_author_location) %></td>
                   <td align="left"><%= message.author.location %></td>
                 </tr>
               <% end %>
