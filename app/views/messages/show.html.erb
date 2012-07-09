@@ -99,6 +99,11 @@
 <p class="pagination"><%= pagination_links_full @reply_pages, @reply_count, :per_page_links => false %></p>
 <% end %>
 
+<span class='st_googleplus_large' displayText='Google +'></span>
+<span class='st_facebook_large' displayText='Facebook'></span>
+<span class='st_twitter_large' displayText='Tweet'></span>
+<span class='st_sina_large' displayText='Sina'></span>
+
 <% if !@topic.locked? && authorize_for('messages', 'reply') %>
 <p><%= toggle_link l(:button_reply), "reply", :focus => 'message_content' %></p>
 <div id="reply" style="display:none;">
