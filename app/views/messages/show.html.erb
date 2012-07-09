@@ -36,6 +36,9 @@
         </table>
       </td>
       <td class="board_table_content" valign="top">
+        <div class="post_time">
+          <%= authoring @topic.created_on, @topic.author %>
+        </div>
         <div class="wiki">
         <%= textilizable(@topic.content, :attachments => @topic.attachments) %>
         </div>
@@ -73,6 +76,9 @@
               <%= link_to_remote_if_authorized(image_tag('comment.png'), { :url => {:action => 'quote', :id => message} }, :title => l(:button_quote)) unless @topic.locked? %>
               <%= link_to(image_tag('edit.png'), {:action => 'edit', :id => message}, :title => l(:button_edit)) if message.editable_by?(User.current) %>
               <%= link_to(image_tag('delete.png'), {:action => 'destroy', :id => message}, :method => :post, :confirm => l(:text_are_you_sure), :title => l(:button_delete)) if message.destroyable_by?(User.current) %>
+            </div>
+            <div class="post_time">
+              <%= authoring message.created_on, message.author %>
             </div>
             <div class="wiki"><%= textilizable message, :content, :attachments => message.attachments %></div>
             <%= link_to_attachments message, :author => false %>

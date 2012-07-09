@@ -23,3 +23,10 @@
   border-top: 1px solid #E4E4E4;
   padding: 10px;
 }
+.board_table_content .post_time {
+  line-height: 30px;
+  color: grey;
+}
+.board_table_content .post_time a {
+  color: grey;
+}
