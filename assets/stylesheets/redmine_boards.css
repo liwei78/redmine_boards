@@ -8,6 +8,9 @@
   padding: 4px;
   white-space: nowrap;
 }
+.board_table p {
+  margin: 10px auto;
+}
 .board_table .board_table_avatar {
   width: 160px;
   text-align: center;
@@ -31,4 +34,8 @@
 }
 .board_table_content .post_time a {
   color: grey;
+}
+h2 span.small {
+  font-size: 10px !important;
+  font-weight: normal;
 }

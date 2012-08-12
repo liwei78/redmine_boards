@@ -1,8 +1,11 @@
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag 'redmine_boards', :plugin => 'redmine_boards' %>
+<% end %>
 <div class="contextual">
 <%= link_to(l(:button_edit), edit_user_path(@user), :class => 'icon icon-edit') if User.current.admin? %>
 </div>
 
-<h2><%= avatar @user, :size => "80" %> <%=h @user.name %></h2>
+<h2><%= avatar @user, :size => "80" %> <%=h @user.name %> <%= "<span class='small'>(#{@user.vip_name})</span>" if @user.is_vip -%></h2>
 
 <div class="splitcontentleft">
 <ul>
